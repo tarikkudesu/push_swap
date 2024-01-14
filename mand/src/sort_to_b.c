@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:14:36 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 15:51:14 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 18:13:23 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ t_list	*find_max(t_list **stack)
 unsigned int	cheap_set_b(t_list **a, t_list **b, t_list **cur)
 {
 	if ((*cur)->med && (*cur)->target->med)
-		return (max_value(cost_to_top(a, cur), cost_to_top(b, &(*cur)->target)));
+		return (max(cost_to_top(a, cur), cost_to_top(b, &(*cur)->target)));
 	if (!(*cur)->med && !(*cur)->target->med)
-		return (max_value(cost_to_top(a, cur), cost_to_top(b, &(*cur)->target)));
+		return (max(cost_to_top(a, cur), cost_to_top(b, &(*cur)->target)));
 	else
 		return ((cost_to_top(a, cur) + cost_to_top(b, &(*cur)->target)));
 	return (0);

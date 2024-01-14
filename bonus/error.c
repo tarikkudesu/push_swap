@@ -6,13 +6,13 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:13:01 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 16:54:52 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 19:31:32 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	free_stacks(t_list **a, t_list **b, t_inst **inst)
+void	free_stacks(t_list **a, t_list **b, t_list **inst)
 {
 	if (a)
 	{
@@ -26,7 +26,7 @@ void	free_stacks(t_list **a, t_list **b, t_inst **inst)
 	}
 	if (inst)
 	{
-		ft_instclear(inst);
+		ft_lstclear(inst);
 		*inst = NULL;
 	}
 }
@@ -41,13 +41,20 @@ void	ft_free_arr(char **tab)
 	free(tab);
 }
 
-void	ft_exit(t_list **a, t_list **b, t_inst **inst, char **args, char *s)
+void	_ft_exit(t_list **a, t_list **b, t_list **inst, char *line)
 {
-	if (s)
-		free(s);
+	if (line)
+		free(line);
+	free_stacks(a, b, inst);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
+}
+
+void	ft_exit(t_list **a, t_list **inst, char **args)
+{
 	if (args)
 		ft_free_arr(args);
-	free_stacks(a, b, inst);
+	free_stacks(a, NULL, inst);
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }

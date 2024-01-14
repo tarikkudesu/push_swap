@@ -18,7 +18,7 @@ RM = rm -f
 NAME = push_swap
 BONUS = checker
 
-all: ${NAME} clean
+all: ${NAME}
 
 bonus: ${BONUS}
 

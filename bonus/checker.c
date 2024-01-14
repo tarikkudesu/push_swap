@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:00:13 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 17:29:00 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 19:42:41 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,16 @@ void	ft_init_stack(t_list **stack_a, char **argv)
 		j = -1;
 		args = ft_split(*(argv + i), ' ');
 		if (!args || !*args)
-			ft_exit(stack_a, NULL, NULL, args, NULL);
+			ft_exit(stack_a, NULL, args);
 		while (*(args + ++j))
 		{
 			new = unpenetrable_parcing(*(args + j));
 			if (!new || !ft_doubles(new->data, stack_a))
-				ft_exit(stack_a, NULL, NULL, args, NULL);
+				ft_exit(stack_a, NULL, args);
 			ft_lstadd_back(stack_a, new);
 		}
 		ft_free_arr(args);
 	}
-}
-#include <stdio.h>
-
-void print(t_list *node) 
-{
-    while (node != NULL) 
-    {
-        printf(" %d \n", node->data);
-        node = node->next;
-    }
 }
 
 int	main(int argc, char **argv)
@@ -92,6 +82,5 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	ft_init_stack(&stack_a, argv + 1);
 	checker(&stack_a, &stack_b);
-	// print(stack_a);
 	free_stacks(&stack_a, &stack_b, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:47:43 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 15:59:50 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 20:06:00 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ int				rrb(t_list **b);
 int				rrr(t_list **a, t_list **b);
 int				reverse_rotate(t_list **stack);
 
-/* FUNCTIONS */
 unsigned int	cost_to_top(t_list **stack, t_list **cur);
-unsigned int	max_value(unsigned int x, unsigned int y);
+unsigned int	max(unsigned int x, unsigned int y);
 t_list			*find_cheapest(t_list **a);
 int				loop_rrr_b(t_list **a, t_list **b, t_list *cheapest);
 int				loop_rr_b(t_list **a, t_list **b, t_list *cheapest);

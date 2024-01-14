@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:14:23 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 17:29:41 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 20:32:00 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,117 +26,97 @@ int	is_sorted(t_list **stack_a)
 	return (1);
 }
 
-t_inst	*ft_instnew(char *inst)
+void	checker_3(t_list **a, t_list **b, t_list **inst, char *line)
 {
-	t_inst	*head;
-
-	head = (t_inst *)malloc(sizeof(t_inst));
-	if (!head)
-		return (NULL);
-	head->inst = inst;
-	head->next = NULL;
-	return (head);
-}
-
-void	ft_instadd_back(t_inst **lst, t_inst *new)
-{
-	t_inst	*temp;
-
-	if (!*lst)
+	if (!ft_strcmp(line, "rra\n"))
 	{
-		*lst = new;
-		return ;
+		if (!create_node(inst, 41))
+			_ft_exit(a, b, inst, line);
 	}
-	if (!new)
-		return ;
-	temp = *lst;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-}
-
-int	create_node(t_inst **inst, char *s)
-{
-	t_inst	*new;
-
-	new = ft_instnew(s);
-	if (!new)
-		return (0);
-	ft_instadd_back(inst, new);
-	return (1);
-}
-
-void	ft_instclear(t_inst **inst)
-{
-	t_inst	*temp;
-
-	if (!*inst)
-		return ;
-	temp = *inst;
-	while (inst && *inst)
-	{
-		temp = temp->next;
-		free(*inst);
-		*inst = temp;
-	}
-	*inst = NULL;
-}
-
-void	checker_next(t_list **a, t_list **b, t_inst **inst, char *line)
-{
-		(void)a;
-	(void)b;
-	if (!ft_strcmp(line, "ra\n"))
-		create_node(inst, "ra\n");
-	else if (!ft_strcmp(line, "rb\n"))
-		create_node(inst, "rb\n");
-	else if (!ft_strcmp(line, "rr\n"))
-		create_node(inst, "rr\n");
-	else if (!ft_strcmp(line, "rra\n"))
-		create_node(inst, "rra\n");
 	else if (!ft_strcmp(line, "rrb\n"))
-		create_node(inst, "rrb\n");
+	{
+		if (!create_node(inst, 42))
+			_ft_exit(a, b, inst, line);
+	}
 	else if (!ft_strcmp(line, "rrr\n"))
-		create_node(inst, "rrr\n");
-	else if (!ft_strcmp(line, "pb\n"))
-		create_node(inst, "pb\n");
-	// else
-		// ft_exit(a, b, inst, NULL, line);
+	{
+		if (!create_node(inst, 43))
+			_ft_exit(a, b, inst, line);
+	}
+	else
+		_ft_exit(a, b, inst, line);
 }
-#include <stdio.h>
+
+void	checker_2(t_list **a, t_list **b, t_list **inst, char *line)
+{
+	if (!ft_strcmp(line, "rra\n"))
+	{
+		if (!create_node(inst, 41))
+			_ft_exit(a, b, inst, line);
+	}
+	else if (!ft_strcmp(line, "rrb\n"))
+	{
+		if (!create_node(inst, 42))
+			_ft_exit(a, b, inst, line);
+	}
+	else if (!ft_strcmp(line, "rrr\n"))
+	{
+		if (!create_node(inst, 43))
+			_ft_exit(a, b, inst, line);
+	}
+	else
+		checker_3(a, b, inst, line);
+}
+
+void	checker_1(t_list **a, t_list **b, t_list **inst, char *line)
+{
+	if (!ft_strcmp(line, "sb\n"))
+	{
+		if (!create_node(inst, 12))
+			_ft_exit(a, b, inst, line);
+	}
+	else if (!ft_strcmp(line, "ss\n"))
+	{
+		if (!create_node(inst, 13))
+			_ft_exit(a, b, inst, line);
+	}
+	else if (!ft_strcmp(line, "pa\n"))
+	{
+		if (!create_node(inst, 21))
+			_ft_exit(a, b, inst, line);
+	}
+	else if (!ft_strcmp(line, "pb\n"))
+	{
+		if (!create_node(inst, 22))
+			_ft_exit(a, b, inst, line);
+	}
+	else
+		checker_2(a, b, inst, line);
+}
 
 void	checker(t_list **a, t_list **b)
 {
 	char	*line;
-	t_inst	*inst;
+	t_list	*inst;
 
-	(void)a;
-	(void)b;
 	line = NULL;
+	inst = NULL;
 	while (1)
 	{
 		line = get_next_line(0);
-		int d = create_node(&inst, line);
-		printf("%d\n%s\n", d, inst->inst);
-		break ;
-		// if (!ft_strcmp(line, "sa\n"))
-		// 	create_node(&inst, "sa\n");
-		// else if (!ft_strcmp(line, "sb\n"))
-		// 	create_node(&inst, "sb\n");
-		// else if (!ft_strcmp(line, "ss\n"))
-		// 	create_node(&inst, "ss\n");
-		// else if (!ft_strcmp(line, "pa\n"))
-		// 	create_node(&inst, "pa\n");
-		// else if (!ft_strcmp(line, ""))
-		// 	break ;
-		// else
-		// 	checker_next(a, b, &inst, line);
-		// free(line);
-		// line = NULL;
+		if (!ft_strcmp(line, ""))
+		{
+			free(line);
+			break ;
+		}
+		else if (!ft_strcmp(line, "sa\n"))
+		{
+			if (!create_node(&inst, 11))
+				_ft_exit(a, b, &inst, line);
+		}
+		else
+			checker_1(a, b, &inst, line);
+		free(line);
 	}
-	// apply_insttructions(a, b, &inst);
-	// if (is_sorted(a) && !(*b))
-	// 	ft_putstr_fd("OK\n", 1);
-	// else
-	// 	ft_putstr_fd("KO\n", 1);
+	apply_insttructions(a, b, &inst);
 }

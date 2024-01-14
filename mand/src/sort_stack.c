@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 10:25:45 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 15:05:02 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/14 18:13:01 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	cost_to_top(t_list **stack, t_list **cur)
 		return (size - (*cur)->position);
 }
 
-unsigned int	max_value(unsigned int x, unsigned int y)
+unsigned int	max(unsigned int x, unsigned int y)
 {
 	if (x >= y)
 		return (x);
