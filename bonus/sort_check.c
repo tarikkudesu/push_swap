@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:14:23 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 20:32:00 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:11:22 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ void	checker_3(t_list **a, t_list **b, t_list **inst, char *line)
 
 void	checker_2(t_list **a, t_list **b, t_list **inst, char *line)
 {
-	if (!ft_strcmp(line, "rra\n"))
+	if (!ft_strcmp(line, "ra\n"))
 	{
-		if (!create_node(inst, 41))
+		if (!create_node(inst, 31))
 			_ft_exit(a, b, inst, line);
 	}
-	else if (!ft_strcmp(line, "rrb\n"))
+	else if (!ft_strcmp(line, "rb\n"))
 	{
-		if (!create_node(inst, 42))
+		if (!create_node(inst, 32))
 			_ft_exit(a, b, inst, line);
 	}
-	else if (!ft_strcmp(line, "rrr\n"))
+	else if (!ft_strcmp(line, "rr\n"))
 	{
-		if (!create_node(inst, 43))
+		if (!create_node(inst, 33))
 			_ft_exit(a, b, inst, line);
 	}
 	else
@@ -99,11 +99,10 @@ void	checker(t_list **a, t_list **b)
 	char	*line;
 	t_list	*inst;
 
-	line = NULL;
 	inst = NULL;
-	while (1)
+	line = get_next_line(0);
+	while (line)
 	{
-		line = get_next_line(0);
 		if (!ft_strcmp(line, ""))
 		{
 			free(line);
@@ -117,6 +116,7 @@ void	checker(t_list **a, t_list **b)
 		else
 			checker_1(a, b, &inst, line);
 		free(line);
+		line = get_next_line(0);
 	}
 	apply_insttructions(a, b, &inst);
 }

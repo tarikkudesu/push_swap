@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:09:29 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 12:32:23 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 10:08:11 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	ft_isnumber(char *str)
 	tmp = str;
 	if (*tmp == '-' || *tmp == '+')
 		tmp++;
+	if (!*tmp)
+		return (0);
 	while (*(tmp + i) == '0')
 		tmp++;
 	while (*(tmp + i))

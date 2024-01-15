@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:46:24 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 14:50:11 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:20:15 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	t_list	*stack_a;
 	t_list	*stack_b;
 
-	if (1 == argc || (2 == argc && !**(argv + 1)))
+	if (1 == argc)
 		return (1);
 	stack_b = NULL;
 	stack_a = NULL;

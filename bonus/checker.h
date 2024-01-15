@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:00:44 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 20:14:28 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:24:44 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdio.h>
 
 typedef struct s_list	t_list;
 
@@ -30,10 +31,6 @@ void			ft_init_stack(t_list **stack_a, char **argv);
 void			ft_free_arr(char **tab);
 int				ft_isnumber(char *str);
 char			**ft_split(char const *s, char c);
-size_t			ft_strlen(const char *str);
-char			*ft_strdup(const char *s1);
-char			*ft_strjoin(char *s1, char *s2);
-char			*get_next_line(int fd);
 long			ft_atoi(const char *str);
 int				ft_isspace(char c);
 int				ft_strcmp(const char *s1, const char *s2);
@@ -67,5 +64,14 @@ void			checker_3(t_list **a, t_list **b, t_list **inst, char *line);
 void			checker_2(t_list **a, t_list **b, t_list **inst, char *line);
 void			checker_1(t_list **a, t_list **b, t_list **inst, char *line);
 void			checker(t_list **a, t_list **b);
+
+char			*get_next_line(int fd);
+size_t			ft_strlen(const char *s);
+char			*ft_strdup(const char *s1);
+char			*ft_strchr(const char *s);
+char			*ft_strjoin(char *s1, char *s2);
+char			*read_to_nl(char *stat, int fd);
+char			*ft_before_nl(char *stat);
+char			*ft_after_nl(char *stat);
 
 #endif

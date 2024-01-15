@@ -5,72 +5,111 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 18:17:28 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/07 16:53:31 by tamehri          ###   ########.fr       */
+/*   Created: 2023/12/04 09:52:05 by tamehri           #+#    #+#             */
+/*   Updated: 2024/01/15 20:24:00 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*res;
-
-	i = ft_strlen(s1);
-	res = malloc((i + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (*(s1 + i))
-	{
-		*(res + i) = *(s1 + i);
-		i++;
-	}
-	*(res + i) = '\0';
-	return (res);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		j;
-	char	*res;
-
-	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
-	i = -1;
-	while (*(s1 + ++i))
-		*(res + i) = *(s1 + i);
-	j = 0;
-	while (*(s2 + j))
-		*(res + i++) = *(s2 + j++);
-	*(res + i) = '\0';
-	return (res);
-}
-
 char	*get_next_line(int fd)
 {
-	char	*line;
-	int		ret;
+	static char	*stat;
+	char		*line;
 
-	line = malloc(5 * sizeof(char));
+	if (fd < 0)
+	{
+		if (stat)
+		{
+			free(stat);
+			stat = NULL;
+		}
+		return (NULL);
+	}
+	stat = read_to_nl(stat, fd);
+	if (!stat)
+		return (NULL);
+	line = ft_before_nl(stat);
+	stat = ft_after_nl(stat);
+	return (line);
+}
+
+char	*read_to_nl(char *stat, int fd)
+{
+	char	*buff;
+	int		bytes;
+
+	buff = malloc(sizeof(char) * (4));
+	if (!buff)
+		return (NULL);
+	bytes = 1;
+	while (!ft_strchr(stat) && bytes)
+	{
+		bytes = read(fd, buff, 4);
+		if (bytes == -1)
+		{
+			free(buff);
+			buff = NULL;
+			return (NULL);
+		}
+		*(buff + bytes) = '\0';
+		stat = ft_strjoin(stat, buff);
+	}
+	free(buff);
+	buff = NULL;
+	return (stat);
+}
+
+char	*ft_before_nl(char *stat)
+{
+	char	*line;
+	int		i;
+
+	if (!*stat)
+		return (NULL);
+	i = 0;
+	while (*(stat + i) && *(stat + i) != '\n')
+		i++;
+	line = malloc(sizeof(char) * i + 2);
 	if (!line)
 		return (NULL);
-	ret = read(fd, line, 5);
-	line[ret] = '\0';
-	if (ret == -1)
-		return (NULL);
+	i = 0;
+	while (*(stat + i) && *(stat + i) != '\n')
+	{
+		*(line + i) = *(stat + i);
+		i++;
+	}
+	if (*(stat + i) == '\n')
+		*(line + i++) = '\n';
+	*(line + i) = '\0';
 	return (line);
+}
+
+char	*ft_after_nl(char *stat)
+{
+	char	*line;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (*(stat + i) && *(stat + i) != '\n')
+		i++;
+	if (!*(stat + i))
+	{
+		free(stat);
+		return (stat = NULL, NULL);
+	}
+	line = malloc(sizeof(char) * (ft_strlen(stat + i) + 1));
+	if (!line)
+	{
+		free(stat);
+		return (stat = NULL, NULL);
+	}
+	i++;
+	j = 0;
+	while (*(stat + i))
+		*(line + j++) = *(stat + i++);
+	*(line + j) = '\0';
+	free(stat);
+	return (stat = NULL, line);
 }

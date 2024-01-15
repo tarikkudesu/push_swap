@@ -7,7 +7,7 @@ SRC = mand/push_swap.c mand/src/sort_stack.c mand/src/sort_simple.c \
 	  mand/src/sort_to_a.c mand/src/sort_algo_a.c
 
 SRC_B = bonus/checker.c bonus/sort_check.c bonus/push.c bonus/swap.c bonus/rotate.c bonus/reverse_rotate.c \
-		bonus/libft.c bonus/lists.c bonus/ft_split.c bonus/error.c bonus/get_next_line.c bonus/apply.c
+		bonus/libft.c bonus/lists.c bonus/ft_split.c bonus/error.c bonus/get_next_line.c bonus/apply.c bonus/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_B = $(SRC_B:.c=.o)

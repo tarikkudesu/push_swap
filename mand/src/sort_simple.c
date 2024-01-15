@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 13:12:31 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 15:49:50 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 15:36:41 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ void	ft_sort4(t_list **stack_a, t_list **stack_b)
 	else
 		while (min--)
 			ra(stack_a);
-	pb(stack_a, stack_b);
 	if (!is_sorted(stack_a))
+	{
+		pb(stack_a, stack_b);
 		ft_sort3(stack_a);
-	pa(stack_a, stack_b);
+		pa(stack_a, stack_b);
+	}
 }
 
 void	ft_sort5(t_list **stack_a, t_list **stack_b)
@@ -92,10 +94,12 @@ void	ft_sort5(t_list **stack_a, t_list **stack_b)
 	else
 		while (min--)
 			ra(stack_a);
-	pb(stack_a, stack_b);
 	if (!is_sorted(stack_a))
+	{
+		pb(stack_a, stack_b);
 		ft_sort4(stack_a, stack_b);
-	pa(stack_a, stack_b);
+		pa(stack_a, stack_b);
+	}
 }
 
 void	simple_sort(t_list **stack_a, t_list **stack_b, int size)

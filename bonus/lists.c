@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:49:25 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 20:27:28 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:22:47 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ unsigned int	ft_lstsize(t_list *lst)
 		lst = lst->next;
 	}
 	return (i);
-}
-
-
-int	create_node(t_list **inst, int nb)
-{
-	t_list	*new;
-
-	new = ft_lstnew(nb);
-	if (!new)
-		return (0);
-	ft_lstadd_back(inst, new);
-	return (1);
 }
 
 t_list	*ft_lstlast(t_list *lst)

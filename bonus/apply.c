@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:42:03 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 20:33:03 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 18:48:41 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	apply_insttructions(t_list **a, t_list **b, t_list **inst)
 		apply(a, b, tmp->data);
 		tmp = tmp->next;
 	}
-	print(inst, a);
 	if (is_sorted(a) && !(*b))
 		ft_putstr_fd("OK\n", 1);
 	else

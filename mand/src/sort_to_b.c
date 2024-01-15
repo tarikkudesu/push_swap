@@ -6,7 +6,7 @@
 /*   By: tamehri <tamehri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:14:36 by tamehri           #+#    #+#             */
-/*   Updated: 2024/01/14 18:13:23 by tamehri          ###   ########.fr       */
+/*   Updated: 2024/01/15 17:44:04 by tamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void	sort_to_b(t_list **a, t_list **b)
 		move_cheapest_b(a, b, cheapest);
 		pb(a, b);
 	}
-	ft_sort3(a);
+	if (!is_sorted(a))
+		ft_sort3(a);
 }
